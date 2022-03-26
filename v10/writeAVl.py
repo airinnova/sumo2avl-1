@@ -45,7 +45,7 @@ lines.append("60\t0\t0\n")
 
 for wing in assembly.wingSkeletons:
 
-    lines.append("#================================================")
+    lines.append("#====================================================================")
 
     lines.append("SURFACE")
     lines.append(wing.name)
@@ -71,7 +71,7 @@ for wing in assembly.wingSkeletons:
 
     for section in wing.wingSecs[::-1]:
 
-        lines.append("#--------------------------------")
+        lines.append("#-----------------------------------------------")
 
         lines.append("SECTION")
         lines.append('#' + section.name + '\n')
@@ -90,10 +90,12 @@ for wing in assembly.wingSkeletons:
 
         key = wing.name + '###' + section.name
         if key in assembly.ctrlInfo:
-            lines.append("CONTROL")
-            lines.append('\t'.join(['#name', 'gain', 'Xhinge', 'XYZhvec', 'SgnDup']))
             for info in assembly.ctrlInfo[key]:
+                lines.append("CONTROL")
+                lines.append('\t'.join(['#name', 'gain', 'Xhinge', 'XYZhvec', 'SgnDup']))
                 lines.append('\t'.join([info.name, "1.0", str3(info.Xhinge), "0 0 0", str(info.SgnDup)]))
+            lines.append('')
+
 
 with open(AVL_FILE, 'w') as file:
     file.write("\n".join(lines).expandtabs(8))

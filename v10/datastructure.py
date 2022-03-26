@@ -162,7 +162,7 @@ def __addControlSys__(self):
 
                 info = Info()
                 info.name = part.name
-                info.Xhinge = chordpos if hingetype == 'TKE' else (0 - chordpos)
+                info.Xhinge = chordpos if hingetype == 'TEF' else (0 - chordpos)
                 info.SgnDup = 1 if max(part.factor) * min(part.factor) > 0 else -1
 
                 secname = wing.GetWingSecName(spanpos)
